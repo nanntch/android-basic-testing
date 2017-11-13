@@ -23,5 +23,13 @@ public class NameValidationFailTest {
         assertFalse("ต้องไม่ผ่านนะ เพราะว่ามันเป็นค่า null!", result);
         assertEquals("Name is Null", validation.validate(null));
     }
+
+    @Test
+    public void ชื่อมีอักษรพิเศษ(){
+        NameValidation validation = new NameValidation();
+        boolean result = validation.isSpecialChars("!@#$^&()");
+        assertFalse("ต้องไม่ผ่านนะ เพราะว่ามันมีอักษรพิเศษ!", result);
+        assertEquals("Name have Special chars", validation.validate("!@#$^&()"));
+    }
     
 }

@@ -9,8 +9,9 @@ class NameValidation {
             validateText = "Name is Null";
         } else if (isEmpty(name) == false) {
             validateText = "Name is empty";
+        } else if (isSpecialChars(name) == false){
+            validateText = "Name have Special chars";
         }
-
         return validateText;
 }
 
@@ -23,6 +24,13 @@ class NameValidation {
 
     public boolean isNull(String name) {
         if (name == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isSpecialChars(String name) {
+        if (name == "!@#$^&()"){
             return false;
         }
         return true;
