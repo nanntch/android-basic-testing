@@ -31,5 +31,12 @@ public class NameValidationFailTest {
         assertFalse("ต้องไม่ผ่านนะ เพราะว่ามันมีอักษรพิเศษ!", result);
         assertEquals("Name have Special chars", validation.validate("!@#$^&()"));
     }
-    
+
+    @Test
+    public void ชื่อมีตัวเลข(){
+        NameValidation validation = new NameValidation();
+        boolean result = validation.isNumber("Nacha1");
+        assertFalse("ต้องไม่ผ่านนะ เพราะว่ามันมีตัวเลข!", result);
+        assertEquals("Name have numeric", validation.validate("Nacha1"));
+    }
 }

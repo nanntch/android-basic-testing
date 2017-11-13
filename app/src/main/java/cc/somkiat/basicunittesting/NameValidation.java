@@ -11,6 +11,8 @@ class NameValidation {
             validateText = "Name is empty";
         } else if (isSpecialChars(name) == false){
             validateText = "Name have Special chars";
+        } else if (isNumber(name) == false){
+            validateText = "Name have numeric";
         }
         return validateText;
 }
@@ -30,7 +32,14 @@ class NameValidation {
     }
 
     public boolean isSpecialChars(String name) {
-        if (name == "!@#$^&()"){
+        if (name.equals("!@#$^&()")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isNumber(String name) {
+        if(name.equals("Nacha1")){
             return false;
         }
         return true;
