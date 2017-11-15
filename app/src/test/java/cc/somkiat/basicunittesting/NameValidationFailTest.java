@@ -4,63 +4,69 @@ import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
 
 public class NameValidationFailTest {
 
     @Test
-    public void NameIsEmpty(){
+    public void NameIsEmpty()throws IllegalArgumentException{
         NameValidation validation = new NameValidation();
-        boolean result = validation.isEmpty("");
+        String name = "";
+        boolean result = validation.isEmptyAndNull(name);
         assertFalse("ต้องไม่ผ่านนะ เพราะว่ามันมีค่าว่าง!", result);
-        assertEquals("Name is empty", validation.validate(""));
+        assertEquals("Name is Empty or Null", validation.validate(name));
     }
 
     @Test
     public void NameIsNull(){
         NameValidation validation = new NameValidation();
-        boolean result = validation.isNull(null);
+        String name = null;
+        boolean result = validation.isEmptyAndNull(name);
         assertFalse("ต้องไม่ผ่านนะ เพราะว่ามันเป็นค่า null!", result);
-        assertEquals("Name is Null", validation.validate(null));
+        assertEquals("Name is Empty or Null", validation.validate(name));
     }
 
     @Test
     public void NameHaveSpecialChars(){
         NameValidation validation = new NameValidation();
-        boolean result = validation.isNormal(">Nacha<");
+        String name = ">Nacha<";
+        boolean result = validation.isNormal(name);
         assertFalse("ต้องไม่ผ่านนะ เพราะว่ามันมีอักษรพิเศษ!", result);
-        assertEquals("Name is not normal", validation.validate(">Nacha<"));
+        assertEquals("Name is not normal", validation.validate(name));
     }
 
     @Test
     public void NameHaveNumeric(){
         NameValidation validation = new NameValidation();
-        boolean result = validation.isNormal("Nacha1");
+        String name = "Nacha1";
+        boolean result = validation.isNormal(name);
         assertFalse("ต้องไม่ผ่านนะ เพราะว่ามันมีตัวเลข!", result);
-        assertEquals("Name is not normal", validation.validate("Nacha1"));
+        assertEquals("Name is not normal", validation.validate(name));
     }
 
     @Test
     public void NameIsTooshort(){
         NameValidation validation = new NameValidation();
-        boolean result = validation.isTooShort("a");
+        String name = "n";
+        boolean result = validation.isWrongLength(name);
         assertFalse("ต้องไม่ผ่านนะ เพราะว่าชื่อสั้นเกินไป!", result);
-        assertEquals("Name is too short", validation.validate("a"));
+        assertEquals("Name is wrong length", validation.validate(name));
     }
 
     @Test
     public void NameIsTooLong(){
         NameValidation validation = new NameValidation();
-        boolean result = validation.isTooLong("abcdefghijklmnopqrstaaa");
+        String name = "abcdefghijklmnopqrstaaa";
+        boolean result = validation.isWrongLength(name);
         assertFalse("ต้องไม่ผ่านนะ เพราะชื่อยาวกว่า 20 ตัวอักษร", result);
-        assertEquals("Name is too long", validation.validate("abcdefghijklmnopqrstaaa"));
+        assertEquals("Name is wrong length", validation.validate(name));
     }
 
     @Test
     public void NameIsNotNormal(){
         NameValidation validation = new NameValidation();
-        boolean result = validation.isNormal("!@5Nacha");
+        String name = "!@5Nacha";
+        boolean result = validation.isNormal(name);
         assertFalse("ต้องไม่ผ่านนะ เพราะชื่อไม่ปกติ", result);
-        assertEquals("Name is not normal", validation.validate("!@5Nacha"));
+        assertEquals("Name is not normal", validation.validate(name));
     }
 }

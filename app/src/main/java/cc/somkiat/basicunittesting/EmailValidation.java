@@ -1,37 +1,22 @@
 package cc.somkiat.basicunittesting;
 
-import java.lang.reflect.Array;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-/**
- * Created by Nacha on 15-Nov-17.
- */
 
 class EmailValidation {
     public String validate(String email) {
         String validateText = "Email validation is success";
 
-        if (isNull(email) == false){
-            validateText = "Email is null";
-        } else if(isEmpty(email) == false){
-            validateText = "Email is empty";
+        if (isEmptyAndNull(email) == false){
+            validateText = "Email is Empty or Null";
         } else if (isPatternAllow(email) == false){
             validateText = "Email is not allow";
         }
             return validateText;
     }
 
-    public boolean isEmpty(String email) {
-        if(email.isEmpty()){
-            return false;
-        }
-        return true;
-    }
-
-    public boolean isNull(String email) {
-        if (email == null){
+    public boolean isEmptyAndNull(String email) {
+        if(email == null || email.isEmpty()){
             return false;
         }
         return true;
