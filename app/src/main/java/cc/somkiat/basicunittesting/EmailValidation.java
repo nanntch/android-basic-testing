@@ -3,7 +3,7 @@ package cc.somkiat.basicunittesting;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class EmailValidation {
+public class EmailValidation {
     public String validate(String email) {
         String validateText = "Email validation is success";
 
