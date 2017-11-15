@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
 public class NameValidationFailTest {
 
@@ -26,17 +27,17 @@ public class NameValidationFailTest {
     @Test
     public void NameHaveSpecialChars(){
         NameValidation validation = new NameValidation();
-        boolean result = validation.isSpecialChars("!@#$^&()");
+        boolean result = validation.isNormal(">Nacha<");
         assertFalse("ต้องไม่ผ่านนะ เพราะว่ามันมีอักษรพิเศษ!", result);
-        assertEquals("Name have Special chars", validation.validate("!@#$^&()"));
+        assertEquals("Name is not normal", validation.validate(">Nacha<"));
     }
 
     @Test
     public void NameHaveNumeric(){
         NameValidation validation = new NameValidation();
-        boolean result = validation.isNumber("Nacha1");
+        boolean result = validation.isNormal("Nacha1");
         assertFalse("ต้องไม่ผ่านนะ เพราะว่ามันมีตัวเลข!", result);
-        assertEquals("Name have numeric", validation.validate("Nacha1"));
+        assertEquals("Name is not normal", validation.validate("Nacha1"));
     }
 
     @Test
@@ -50,8 +51,16 @@ public class NameValidationFailTest {
     @Test
     public void NameIsTooLong(){
         NameValidation validation = new NameValidation();
-        boolean result = validation.isTooLong("abcdefghijklmnopqrst");
+        boolean result = validation.isTooLong("abcdefghijklmnopqrstaaa");
         assertFalse("ต้องไม่ผ่านนะ เพราะชื่อยาวกว่า 20 ตัวอักษร", result);
-        assertEquals("Name is too long", validation.validate("abcdefghijklmnopqrst"));
+        assertEquals("Name is too long", validation.validate("abcdefghijklmnopqrstaaa"));
+    }
+
+    @Test
+    public void NameIsNotNormal(){
+        NameValidation validation = new NameValidation();
+        boolean result = validation.isNormal("!@5Nacha");
+        assertFalse("ต้องไม่ผ่านนะ เพราะชื่อไม่ปกติ", result);
+        assertEquals("Name is not normal", validation.validate("!@5Nacha"));
     }
 }
