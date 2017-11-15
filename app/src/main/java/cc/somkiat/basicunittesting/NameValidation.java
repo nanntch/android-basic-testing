@@ -1,6 +1,13 @@
 package cc.somkiat.basicunittesting;
 
+import java.util.List;
+
 class NameValidation {
+
+//    public boolean validate(String name){
+//        List<>
+//        return true;
+//    }
 
     public String validate(String name) {
         String validateText = "Name validation is success";
@@ -13,9 +20,21 @@ class NameValidation {
             validateText = "Name have Special chars";
         } else if (isNumber(name) == false){
             validateText = "Name have numeric";
+        } else if (isTooShort(name) == false){
+            validateText = "Name is too short";
+        } else if (isTooLong(name) == false){
+            validateText = "Name is too long";
+        } else if (isNormal(name) == true){
+            validateText = "Name is normal";
         }
         return validateText;
 }
+//
+//    public void isEmpty(String name) {
+//        if (name.isEmpty()) {
+//            throw new IllegalArgumentException("Name is Empty");
+//        }
+//    }
 
     public boolean isEmpty(String name) {
         if (name.isEmpty()) {
@@ -44,4 +63,26 @@ class NameValidation {
         }
         return true;
     }
+
+    public boolean isTooShort(String name) {
+        if(name.equals("a")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isTooLong(String name) {
+        if(name.equals("abcdefghijklmnopqrst")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isNormal(String name) {
+        if (name.equals("Nacha")) {
+            return true;
+        }
+        return false;
+    }
+
 }
