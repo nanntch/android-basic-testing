@@ -1,5 +1,6 @@
 package cc.somkiat.basicunittesting;
 
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -35,8 +36,8 @@ public class MainActivityTest {
     @Test
     public void SaveAndRevertNameAndEmailSuccessTest() {
         onView(withId(R.id.userNameInput)).perform(replaceText("nacha"), closeSoftKeyboard());
-        onView(withId(R.id.emailInput)).perform(replaceText("aaa@gmail.com"), closeSoftKeyboard());
-        onView(allOf(withId(R.id.saveButton), withText("Save"))).perform(click());
-        onView(allOf(withId(R.id.revertButton), withText("Revert"))).perform(click());
+        onView(withId(R.id.emailInput)).perform(scrollTo(), replaceText("aaa@gmail.com"), closeSoftKeyboard());
+        onView(allOf(withId(R.id.saveButton), withText("Save"))).perform(scrollTo(), click());
+        onView(allOf(withId(R.id.revertButton), withText("Revert"))).perform(scrollTo(),click());
     }
 }
