@@ -27,10 +27,10 @@ public class MainActivityTest {
 
     @Test
     public void EmptyNameAndEmptyEmail(){
-        onView(withId(R.id.userNameInput)).perform(scrollTo(), replaceText(""));
+        onView(withId(R.id.userNameInput)).perform(replaceText(""));
         onView(withId(R.id.emailInput)).perform(scrollTo(), replaceText(""));
         onView(allOf(withId(R.id.saveButton))).perform(scrollTo(), click());
-        onView(allOf(withId(R.id.revertButton))).perform(scrollTo(), click());
+        onView(allOf(withId(R.id.revertButton))).perform(click());
     }
 
     @Test
@@ -38,6 +38,6 @@ public class MainActivityTest {
         onView(withId(R.id.userNameInput)).perform(replaceText("nacha"), closeSoftKeyboard());
         onView(withId(R.id.emailInput)).perform(scrollTo(), replaceText("aaa@gmail.com"), closeSoftKeyboard());
         onView(allOf(withId(R.id.saveButton), withText("Save"))).perform(scrollTo(), click());
-        onView(allOf(withId(R.id.revertButton), withText("Revert"))).perform(scrollTo(),click());
+        onView(allOf(withId(R.id.revertButton), withText("Revert"))).perform(click());
     }
 }
